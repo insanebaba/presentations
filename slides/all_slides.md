@@ -4,7 +4,7 @@ separator: <!--s-->
 verticalSeparator: <!--v-->
 theme: 'moon'
 revealOptions:
-  transition: 'slide'
+  transition: 'convex'
   width: 1280
   parallaxBackgroundHorizontal: 200
   parallaxBackgroundVertical: 50
@@ -42,7 +42,8 @@ revealOptions:
    * Define parameters of NOT being slow 
 3. How Did I solve this problem?
 4. Questions
-   
+
+Note: We can only define what's fast by comparison and not by any other means
 <!--s-->
 # what is **Graphql API**
 <!--v-->
@@ -120,23 +121,41 @@ is a **query** language and **server-side runtime** for APIs that prioritizes gi
 
 ## Is It slow? 
 # Yes <!-- .element: class="fragment appear" -->
-
+<!--s-->
+## Defining Parameters 
 <!--v-->
-## Reasons
+# Define Fastest
+1. Requests per second <!-- .element: class="fragment appear " --> 
+2. Time out per request <!-- .element: class="fragment appear " --> 
+<!--v-->
+## Define Reliability
+1. Uptime <!-- .element: class="fragment appear " --> 
+2. Secure <!-- .element: class="fragment appear " --> 
+3. timeout <!-- .element: class="fragment appear " --> 
+4. Valid data <!-- .element: class="fragment appear " --> 
+<!--v-->
+# Reliability
+* Not in network   <!-- .element: class="fragment appear " --> 
+* Not in architecture   <!-- .element: class="fragment appear " --> 
+* Not in infra structure  <!-- .element: class="fragment appear " --> 
+* Not just for Graphql  <!-- .element: class="fragment appear " --> 
+### In API <!-- .element: class="fragment appear fade-up" --> 
+Note: Not covered in today's presentation , today's target
+<!--s-->
+## Reasons for graphql to be slow
 1. Query/Field resolver mapping is tricky<!-- .element: class="fragment appear" -->
 2. Merging results from different resources<!-- .element: class="fragment appear" -->
 3. query tracing (Apollo tracer)<!-- .element: class="fragment appear" -->
 4. N+1 problem<!-- .element: class="fragment appear" -->
-
-Note: Each resolver function really only knows about its own parent object
+Note: Each resolver function really only knows about its own parent object. Coding coming now
 <!--v-->
-# Evidence
-Note: Coding coming now
+## Evidence for the claim
+
+Note: We are going to look at the projects proving these points missing from current state of the art GRAPHQL servers.
 <!--s-->
 <!-- .slide: data-transition="zoom" -->
 # CODING ALERT
 ![Coding meme](https://media.giphy.com/media/9nKJN5jf0AFFK/giphy.gif)
-
 <!--s-->
 #### BEN Awad BENchmarking graphql frameworks
 <iframe src="https://www.youtube.com/embed/JbV7MCeEPb8" height="600" width="800" ></iframe>
@@ -215,7 +234,8 @@ module.exports.data = genData();
 
 ```
 <!--v-->
-#### Current Benchmarks
+#### Current Benchmarks using autocannon
+5 connections for 5 seconds
 
 | Server                                                                                                                                                            | Requests/s | Latency | Throughput/Mb |
 | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------: | :-----: | ------------: |
@@ -238,6 +258,7 @@ module.exports.data = genData();
 | [express-graphql+type-graphql](https://github.com/benawad/node-graphql-benchmarks/tree/master/benchmarks/express-graphql+type-graphql.js)                         |     1481.0 |  2.90   |          9.32 |
 | [type-graphql+async](https://github.com/benawad/node-graphql-benchmarks/tree/master/benchmarks/type-graphql+async.js)                                             |     1455.8 |  2.93   |          9.16 |
 | [type-graphql+middleware](https://github.com/benawad/node-graphql-benchmarks/tree/master/benchmarks/type-graphql+middleware.js)                                   |     1452.0 |  2.94   |          9.14 |
+Note: Your rest apis are beating these benchmarks already
 <!--v-->
 ### Git repository
 ![ben_awad](github.combenawadnode-graphql-benchmarks.png)
@@ -247,54 +268,31 @@ Note:
 <!--s-->
 ### How to Solve this **slow** graphql performance
 1. Choose Fastest Web framework <!-- .element: class=" fragment appear "-->
-   *  **actix** (twice faster than closest java framework )<!-- .element: class=" fragment appear "-->  
+   *  **actix** (75% faster than closest java framework )<!-- .element: class=" fragment appear "-->  
 2. Choose Rust (more reliable than any in the benchmarks)  <!-- .element: class=" fragment appear "-->
-
 <table>
 <tr>
-<td>
-<img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/fe36cc42774743.57ee5f329fae6.gif" class="fragment appear" width="200" height="200"/>
-
-</td>
+<td><img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/fe36cc42774743.57ee5f329fae6.gif" class="fragment appear" width="200" height="200"/></td>
 <td>
 <p  class="fragment appear">
 <img src="web_server_compared.png" width="200" height="200"/>
 <br>
-<a href="https://www.techempower.com/benchmarks/">
-https://www.techempower.com/benchmarks/</a>
+<a href="https://www.techempower.com/benchmarks/">https://www.techempower.com/benchmarks/</a>
 </p>
 </td>
 </tr>
 </table>
-
+Note: This is what you'll see when you go to the site
 <!--v-->
 ![benchmarks](benchmarks_for_web.png)
-<!--s-->
-## Defining Parameters 
-<!--v-->
-# Reliability
-
-* Not in network   <!-- .element: class="fragment appear " --> 
-* Not in architecture   <!-- .element: class="fragment appear " --> 
-* Not in infra structure  <!-- .element: class="fragment appear " --> 
-### In API <!-- .element: class="fragment appear fade-up" --> 
-<!--v-->
-## Factors to define Reliability
-1. Uptime <!-- .element: class="fragment appear " --> 
-2. Secure <!-- .element: class="fragment appear " --> 
-3. timeout <!-- .element: class="fragment appear " --> 
-4. Valid data <!-- .element: class="fragment appear " --> 
-<!--v-->
-# Fastest
-1. Requests per second <!-- .element: class="fragment appear " --> 
-2. Time out per request <!-- .element: class="fragment appear " --> 
 <!--s-->
 ## Setting up project for crushing benchmarks
 1. Use **actix-web** for web server 
 2. Use **Juniper** for Graphql
 3. Use **Fake** for data generation
+
 <!--v-->
-# Code
+# Code for actix server
 <!--v-->
 ### File : schema.rs
 #### Object Types
@@ -420,9 +418,7 @@ async fn main() -> io::Result<()> {
             .data(schema.clone())
             .wrap(middleware::Logger::default())
             .service(web::resource("/graphql").route(web::post().to(graphql)))
-            .service(web::resource("/graphql").route(web::get().to(graphql)))
-            .service(web::resource("/graphiql").route(web::get().to(graphiql)))
-            .service(web::resource("/graphiql").route(web::post().to(graphiql)))
+            .service(web::resource("/graphiql").route(web::get().to(graphiql))))
     })
     .bind("127.0.0.1:8080")?
     .run()
@@ -444,12 +440,24 @@ async fn main() -> io::Result<()> {
 |-----------|--------|--------|--------|--------|---------|---------|--------|
 | Req/Sec   | 18431  | 18431  | 22863  | 22927  | 21982.4 | 1779.49 | 18421  |
 | Bytes/Sec | 3.91MB | 3.91MB | 4.85MB | 4.86MB | 4.66MB  | 378KB   | 3.91MB |
-<!--v-->
+<!--s-->
+
+# Reliability using Rust
+
+1. Static memory management, no segfaults, no surprises
+2. no dangling pointers
+3. Zero cost abstraction
+4. Small memory footprint
+5. No Runtimes. 
+6. No race conditions
+
+<!--s-->
 
 ## Github link
 ![github link to othe benchmark repo](benchmark_rust_graphql_juniper.png)
 <br/>
 [benchmark_rust_graphql_juniper](https://github.com/insanebaba/benchmark_rust_graphql_juniper/)
+
 <!--s-->
 
 ### Questions?
