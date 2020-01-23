@@ -1,16 +1,19 @@
----
-title: Fastest and most reliable Graphql on planet
-separator: <!--s-->
-verticalSeparator: <!--v-->
-theme: 'moon'
-revealOptions:
-  transition: 'convex'
-  width: 1280
-  parallaxBackgroundHorizontal: 200
-  parallaxBackgroundVertical: 50
-  showSlideNumber: 'speaker'
-  slideNumber: true
----
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Fastest and most reliable Graphql on planet</title>
+    <link rel="stylesheet" href="./css/reveal.css" />
+    <link rel="stylesheet" href="./css/theme/moon.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">
 <style>
 .reveal section img { background:none; border:none; box-shadow:none; }
 .reveal table tr td {font-size:large}
@@ -26,14 +29,14 @@ revealOptions:
 #### API on planet
 <img src="https://media.giphy.com/media/WlBUAWG03Zic8/giphy-downsized.gif" class="fragment appear" width="150" height="100"/>
 
-<!--s-->
+</script></section><section  data-markdown><script type="text/template">
 ## Introduction
 
 * Vikram Mishra <!-- .element: class="fragment appear" -->
 * Senior Developer <!-- .element: class="fragment appear" -->
 * Team Scupa/NEBULA <!-- .element: class="fragment appear" -->
   
-<!--s-->
+</script></section><section  data-markdown><script type="text/template">
 ## Topics for presentation
 
 1. What is GraphQL?
@@ -43,18 +46,18 @@ revealOptions:
 3. How Did I solve this problem?
 4. Questions
 
-Note: We can only define what's fast by comparison and not by any other means
-<!--s-->
+<aside class="notes"><p>We can only define what&#39;s fast by comparison and not by any other means</p>
+</aside></script></section><section ><section data-markdown><script type="text/template">
 # what is **Graphql API**
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 
 GraphQL
 ---
 is a **query** language and **server-side runtime** for APIs that prioritizes giving clients exactly the data they request and no more.
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 * GraphQL is designed to make APIs ~**fast**~, <u>flexible</u>, and <u>**developer-friendly**</u>. 
 * GraphQL lets developers construct requests that **pull** data from **multiple** data sources in a **single** API call. 
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 ### Back end <!-- .element: class="fragment grow " --> 
 ### for 
 ### front end <!-- .element: class="fragment grow " --> 
@@ -62,7 +65,7 @@ is a **query** language and **server-side runtime** for APIs that prioritizes gi
 <img src="https://sensedia.com/wp-content/uploads/2019/01/sensedia-graphql-bff-1200x565.jpg" alt="drawing" width="600" height="300" class="fragment appear" />
 <img src="bff.png" alt="drawing" height="300" class="fragment appear" />
 <p>BFF presentation</p> <!-- .element: class="fragment appear" -->
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 
 ## Graphql sample
 <table width="100%">
@@ -99,7 +102,7 @@ is a **query** language and **server-side runtime** for APIs that prioritizes gi
         </td>
     </tr>
 </table>
-<!--s-->
+</script></section></section><section ><section data-markdown><script type="text/template">
 
 ## **Why** use it?
 1. It's specification <!-- .element: class="fragment appear" -->
@@ -107,61 +110,61 @@ is a **query** language and **server-side runtime** for APIs that prioritizes gi
 3. It improves data usage over network <!-- .element: class="fragment appear" -->
 4. It empowers front end developers to experiment with data. <!-- .element: class="fragment appear" -->
 5. It provides granular control over your data graph <!-- .element: class="fragment appear" -->
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 # Also 
 #### Every organisation data looks like this
 ![recursive data graphq](https://media.giphy.com/media/r6ctTp6RxTBvO/giphy.gif)
-<!--s-->
+</script></section></section><section  data-markdown><script type="text/template">
 ## **When** to use it ?
 1. When you have multiple applications/consumers using it(web apps, mobile apps)?<!-- .element: class="fragment appear" -->
 2. When want to have granular control over data?<!-- .element: class="fragment appear" -->
 3. When you know you'll extend your existing APIs for more data<!-- .element: class="fragment appear" -->
 4. ..... too many to list<!-- .element: class="fragment appear" -->
-<!--s-->
+</script></section><section  data-markdown><script type="text/template">
 
 ## Is It slow? 
 # Yes <!-- .element: class="fragment appear" -->
-<!--s-->
+</script></section><section ><section data-markdown><script type="text/template">
 ## Defining Parameters 
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 # Define Fastest
 1. Requests per second <!-- .element: class="fragment appear " --> 
 2. Time out per request <!-- .element: class="fragment appear " --> 
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 ## Define Reliability
 1. Uptime <!-- .element: class="fragment appear " --> 
 2. Secure <!-- .element: class="fragment appear " --> 
 3. timeout <!-- .element: class="fragment appear " --> 
 4. Valid data <!-- .element: class="fragment appear " --> 
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 # Reliability
 * Not in network   <!-- .element: class="fragment appear " --> 
 * Not in architecture   <!-- .element: class="fragment appear " --> 
 * Not in infra structure  <!-- .element: class="fragment appear " --> 
 * Not just for Graphql  <!-- .element: class="fragment appear " --> 
 ### In API <!-- .element: class="fragment appear fade-up" --> 
-Note: Not covered in today's presentation , today's target
-<!--s-->
+<aside class="notes"><p>Not covered in today&#39;s presentation , today&#39;s target</p>
+</aside></script></section></section><section ><section data-markdown><script type="text/template">
 ## Reasons for graphql to be slow
 1. Query/Field resolver mapping is tricky<!-- .element: class="fragment appear" -->
 2. Merging results from different resources<!-- .element: class="fragment appear" -->
 3. query tracing (Apollo tracer)<!-- .element: class="fragment appear" -->
 4. N+1 problem<!-- .element: class="fragment appear" -->
-Note: Each resolver function really only knows about its own parent object. Coding coming now
-<!--v-->
+<aside class="notes"><p>Each resolver function really only knows about its own parent object. Coding coming now</p>
+</aside></script></section><section data-markdown><script type="text/template">
 ## Evidence for the claim
 
-Note: We are going to look at the projects proving these points missing from current state of the art GRAPHQL servers.
-<!--s-->
+<aside class="notes"><p>We are going to look at the projects proving these points missing from current state of the art GRAPHQL servers.</p>
+</aside></script></section></section><section  data-markdown><script type="text/template">
 <!-- .slide: data-transition="zoom" -->
 # CODING ALERT
 ![Coding meme](https://media.giphy.com/media/9nKJN5jf0AFFK/giphy.gif)
-<!--s-->
+</script></section><section ><section data-markdown><script type="text/template">
 #### BEN Awad BENchmarking graphql frameworks
 <iframe src="https://www.youtube.com/embed/JbV7MCeEPb8" height="600" width="800" ></iframe>
 <img src="ben_awad_video.png" alt="drawing" height="400" class="fragment appear" >
 <p>Ben Awad - Benchmarking Graphql frameworks</p>
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 
 ## Data Graph 
 
@@ -183,7 +186,7 @@ type Author {
   }
 ```
 
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 ## Serving the results
 ```javascript
 const faker = require("faker");
@@ -216,7 +219,7 @@ function genData() {
 
 module.exports.data = genData();
 ```
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 
 ## Query 
 
@@ -233,7 +236,7 @@ module.exports.data = genData();
 }
 
 ```
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 #### Current Benchmarks using autocannon
 5 connections for 5 seconds
 
@@ -259,14 +262,13 @@ module.exports.data = genData();
 | [type-graphql+async](https://github.com/benawad/node-graphql-benchmarks/tree/master/benchmarks/type-graphql+async.js)                                             |     1455.8 |  2.93   |          9.16 |
 | [type-graphql+middleware](https://github.com/benawad/node-graphql-benchmarks/tree/master/benchmarks/type-graphql+middleware.js)                                   |     1452.0 |  2.94   |          9.14 |
 
-Note: Your rest apis are beating these benchmarks already
-<!--v-->
+<aside class="notes"><p>Your rest apis are beating these benchmarks already</p>
+</aside></script></section><section data-markdown><script type="text/template">
 ### Git repository
 ![ben_awad](github.combenawadnode-graphql-benchmarks.png)
 <br>
 [node-graphql-benchmarks](https://github.com/benawad/node-graphql-benchmarks)
-Note: 
-<!--s-->
+<aside class="notes"></aside></script></section></section><section ><section data-markdown><script type="text/template">
 ### How to Solve this **slow** graphql performance
 1. Choose Fastest Web framework <!-- .element: class=" fragment appear "-->
    *  **actix** (75% faster than closest java framework )<!-- .element: class=" fragment appear "-->  
@@ -283,18 +285,18 @@ Note:
 		</td>
 	</tr>
 </table>
-Note: This is what you'll see when you go to the site
-<!--v-->
+<aside class="notes"><p>This is what you&#39;ll see when you go to the site</p>
+</aside></script></section><section data-markdown><script type="text/template">
 ![benchmarks](benchmarks_for_web.png)
-<!--s-->
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Setting up project for crushing benchmarks
 1. Use **actix-web** for web server 
 2. Use **Juniper** for Graphql
 3. Use **Fake** for data generation
 
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 # Code for actix server
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 ### File : schema.rs
 #### Object Types
 ```
@@ -319,7 +321,7 @@ struct Books {
     num_pages: i32,
 }
 ```
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 ### Query Structs
 ```
 pub struct QueryRoot;
@@ -341,7 +343,7 @@ pub fn create_schema() -> Schema {
     Schema::new(QueryRoot {}, MutationRoot {})
 }
 ```
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 
 ## Data generator
 ```
@@ -357,7 +359,7 @@ fn gen_data() -> Vec<Author> {
     result
 }
 ```
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 ### File : schema.rs
 ### setting up graphql playground
 ```
@@ -384,7 +386,7 @@ async fn graphiql() -> HttpResponse {
 
 ```
 
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 ### setting up graphql handler
 
 ```
@@ -405,7 +407,7 @@ async fn graphql(
 
 ```
 
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 ##### Fire up The Server
 ```
 
@@ -426,9 +428,9 @@ async fn main() -> io::Result<()> {
     .await
 }
 ```
-<!--s-->
+</script></section></section><section ><section data-markdown><script type="text/template">
 # AtLast the Results
-<!--v-->
+</script></section><section data-markdown><script type="text/template">
 
 ### Benchmark with load_runner.js(autocannon)
 5 connections for 5 seconds
@@ -441,7 +443,7 @@ async fn main() -> io::Result<()> {
 |-----------|--------|--------|--------|--------|---------|---------|--------|
 | Req/Sec   | 18431  | 18431  | 22863  | 22927  | 21982.4 | 1779.49 | 18421  |
 | Bytes/Sec | 3.91MB | 3.91MB | 4.85MB | 4.86MB | 4.66MB  | 378KB   | 3.91MB |
-<!--s-->
+</script></section></section><section  data-markdown><script type="text/template">
 
 # Reliability using Rust
 
@@ -452,14 +454,64 @@ async fn main() -> io::Result<()> {
 5. No Runtimes. 
 6. No race conditions
 
-<!--s-->
+</script></section><section  data-markdown><script type="text/template">
 
 ## Github link
 ![github link to othe benchmark repo](benchmark_rust_graphql_juniper.png)
 <br/>
 [benchmark_rust_graphql_juniper](https://github.com/insanebaba/benchmark_rust_graphql_juniper/)
 
-<!--s-->
+</script></section><section  data-markdown><script type="text/template">
 
 ### Questions?
-![Resting here](https://i.pinimg.com/originals/d2/40/dd/d240ddbcf97be8749949be6360a02bd9.gif)
+![Resting here](https://i.pinimg.com/originals/d2/40/dd/d240ddbcf97be8749949be6360a02bd9.gif)</script></section></div>
+    </div>
+
+    <script src="./js/reveal.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // Optional libraries used to extend on reveal.js
+      var deps = [
+        { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: './plugin/zoom-js/zoom.js', async: true },
+        { src: './plugin/notes/notes.js', async: true },
+        { src: './plugin/math/math.js', async: true }
+      ];
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        dependencies: deps
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal.getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"transition":"convex","width":1280,"parallaxBackgroundHorizontal":200,"parallaxBackgroundVertical":50,"showSlideNumber":"speaker","slideNumber":true}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
